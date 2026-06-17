@@ -19,7 +19,7 @@
                 <div class="logo"><i class="fa-brands fa-facebook"></i></div>
                 <div class="searchInput">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder='Search  Facebook'>
+                    <input type="text" placeholder='Search  Facebook'>
                 </div>
             </div>
             <div class="middle-side">
@@ -33,15 +33,16 @@
                 <i class="fa-solid fa-bars" id="notification"></i>
                 <i class="fa-brands fa-facebook-messenger" id="notification"></i>
                 <i class="fa-solid fa-bell" id="notification"></i>
-                <img src="https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1114445501.jpg" alt="" height="40px" width="43px"
-                    class="profile">
+                <img src="https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1114445501.jpg"
+                    alt="" height="40px" width="43px" class="profile">
             </div>
         </header>
         <div class="layout">
             <div class="c-1">
-                <div class="pf"> <img src="https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1114445501.jpg" alt="" height="36px"
-                        width="36px" class="profile" style="margin-bottom: 0px;">
-                    <p style="padding-top: 11px; padding-left: 10px;">Saqib</p>
+                <div class="pf"> <img
+                        src="https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1114445501.jpg"
+                        alt="" height="36px" width="36px" class="profile" style="margin-bottom: 0px;">
+                    <p style="padding-top: 11px; padding-left: 10px;" id="current-user">Saqib</p>
                 </div>
                 <div class="c-1-item"><img
                         src="https://static.xx.fbcdn.net/rsrc.php/v4/yt/r/rJ9k6SVFtYN.png?_nc_eui2=AeHzlyZ71wjZ0ee5l1OvrQyAqnP_AErKGZGqc_8ASsoZkXbonHzKxemIq9iQU0--8SUZ6oJ4JcYG6kwaYTgkB-_Q"
@@ -104,29 +105,29 @@
                         alt="" height="36px" width="36px">
                     <p>Traffic Rider</p>
                 </div>
-                <div class="c-1-item"><img
-                        src="https://wallpapercave.com/wp/wp9784149.jpg"
-                        alt="" height="36px" width="36px">
+                <div class="c-1-item"><img src="https://wallpapercave.com/wp/wp9784149.jpg" alt="" height="36px"
+                        width="36px">
                     <p>PUBG</p>
                 </div>
             </div>
             <div class="c-2" id="postContainer">
                 <div class="postupload-box">
-                    <img src="https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1114445501.jpg" alt="" height="40px" width="43px"
-                        class="profile">
-                    <div class="post-box">What's on your mind, L?</div>
+                    <img src="https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1114445501.jpg"
+                        alt="" height="40px" width="43px" class="profile">
+                    <div class="post-box" id="post-popup">What's on your mind, L?</div>
                     <div class="icons"><i class="fa-solid fa-video"></i>
                         <i class="fa-solid fa-photo-film"></i>
                         <i class="fa-regular fa-face-smile"></i>
                     </div>
                 </div>
                 <div class="story-container" id="story-container">
-                <div class="user-story">
-                    <img src="https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1114445501.jpg" alt="" >
-                    <span><i class="fa-solid fa-circle-plus"></i></span>
-                    <p>Create Story</p>
-                </div>
-                <!--<div class="story" style="background-image:url('https://th.bing.com/th/id/OIP.Sd6rrSLAsyYGj4dQaGzNNQHaNf?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3') ;">
+                    <div class="user-story">
+                        <img src="https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1114445501.jpg"
+                            alt="">
+                        <span><i class="fa-solid fa-circle-plus"></i></span>
+                        <p>Create Story</p>
+                    </div>
+                    <!--<div class="story" style="background-image:url('https://th.bing.com/th/id/OIP.Sd6rrSLAsyYGj4dQaGzNNQHaNf?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3') ;">
                     <div class="profile-pic">
                         <img src="https://th.bing.com/th/id/OIP.Zfa1pSMXpN7vMztZDxuSdQHaLI?w=208&h=305&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="">
                     </div>
@@ -135,7 +136,8 @@
                     </div>
                 </div>-->
                 </div>
-              <!--  <div  class="post">
+                <div id="postSection"></div>
+                <!--  <div  class="post" >
                     <div class="channel-name">
                         <img src="https://th.bing.com/th/id/OIP.Zfa1pSMXpN7vMztZDxuSdQHaLI?w=208&h=305&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
                             alt="" height="40px" width="37px" class="profile">
@@ -341,6 +343,48 @@
             </div>
         </div>
     </div>
+    <!-- Create post dialogue -->
+
+    <div class="create-post-popup" id="post">
+        <form id="create-post-form">
+            <div class="header">
+                <p>Create Post</p>
+
+                <i class="fa-solid fa-xmark" id="close"></i>
+
+            </div>
+
+            <div class="create-post-content">
+                <div class="username">
+                    <div class="user-pf"> <img
+                            src="https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1114445501.jpg"
+                            alt="" height="40px" width="43px" class="profile"></div>
+                    <div class="name">
+                        <p id="loggedin-username"></p>
+                        <p> <i class="fa-solid fa-user-group"></i>Friends<i class="fa-solid fa-caret-down"></i></p>
+                    </div>
+                </div>
+                <textarea name="caption" id="caption" placeholder="What's on your mind, L?"></textarea>
+                <div class="post-obj"><input type="text" id="postLink" placeholder="Add to your post" >
+                   <div class="img"> 
+                    <img src="https://static.xx.fbcdn.net/rsrc.php/v4/y7/r/Ivw7nhRtXyo.png?_nc_eui2=AeG49wBjTffQb5zI-mRmj7XukBVQC4m7dx6QFVALibt3HhZCYA0ZYVzz5e3r0bQCSoGv1GldkgYYt59nMcvRIFsm"
+                        alt="" height="24px" width="24px">
+                       <img src="https://static.xx.fbcdn.net/rsrc.php/v4/yq/r/b37mHA1PjfK.png?_nc_eui2=AeHdFiYuagW6y83b_bp3stUIc9ExYuivsM1z0TFi6K-wzdDoVBQEFVPzwYaJeWXul3O8Z2RVnycH8SRQsj-ERFbZ"
+                        alt="" height="24px" width="24px">
+                           <img src="https://static.xx.fbcdn.net/rsrc.php/v4/yd/r/Y4mYLVOhTwq.png?_nc_eui2=AeGzlZWM--qo0b7LEGyamp9yfPQ6N5_OUfV89Do3n85R9XZAIdkBFAAmGZ7DmDrmx2-vVDNCoZn_QmpitHen9KWq"
+                        alt="" height="24px" width="24px">
+                           <img src="https://static.xx.fbcdn.net/rsrc.php/v4/y1/r/8zlaieBcZ72.png?_nc_eui2=AeHWlFkUAGiDxfGyj6JEXkwLu7QmHo__KE27tCYej_8oTetz36nyWmcI13p6y4TfgwsBSceXad_poPQ87qEvYcbG"
+                        alt="" height="24px" width="24px">
+                           <img src="https://static.xx.fbcdn.net/rsrc.php/v4/yT/r/q7MiRkL7MLC.png?_nc_eui2=AeGl7SNSdYrb21aBPMfSgpdpP2l9fgE6icQ_aX1-ATqJxJlflTs6JYcvTl1APCTrV_MD5Sc6Q7xDXAxZxM0hiAz-"
+                        alt="" height="24px" width="24px">
+                        <i class="fa-solid fa-ellipsis"></i>
+                   </div>     
+                </div>
+                <button id="postBtn" disabled>Post</button>
+            </div>
+        </form>
+    </div>
+
     <script src="dashboard.js"></script>
     <script src="../authentication/authentication.js"></script>
 </body>

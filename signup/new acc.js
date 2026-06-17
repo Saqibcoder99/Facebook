@@ -7,7 +7,7 @@ var Address = document.getElementById("address")
 var newPassword = document.getElementById("new password")
 var genderChecked = document.getElementsByName("gender")
 var regex = /^[\w\-\.\+]+\@[a-zA-Z0-9\. \-]+\.[a-zA-z0-9]{2,4}$/;
-let dataStore = [];
+//let dataStore = [];
 //localStorage.setItem("users", JSON.stringify(dataStore));
 function sweetAlert2(message) {
 
@@ -66,10 +66,17 @@ function submitHandler(e) {
             dataObj.gender = genderChecked[i].value
         }
     }
-
-    let checkingEmail = JSON.parse(localStorage.getItem("users"));
+//localStorage.setItem("users", JSON.stringify(dataStore));
+ 
+    let checkingEmail = JSON.parse(localStorage.getItem("users"))||[];
+   // console.log(checkingEmail)
     checkingEmail.push(dataObj)
     localStorage.setItem("users", JSON.stringify(checkingEmail));
+        Swal.fire({
+        title: "Congratulations!",
+        icon: "success",
+        draggable: true
+    });
     firstName.value = "";
     lastName.value = "";
     birthDay.value = "";
@@ -77,12 +84,7 @@ function submitHandler(e) {
     birthYear.value = "";
     Address.value = "";
     newPassword.value = "";
-    Swal.fire({
-        title: "Congratulations!",
-        icon: "success",
-        draggable: true
-    });
      setTimeout(function () {
-           window.location.href = "../dashboard/dashboard.html"
+           window.location.href = "../index.html"
        }, 5000)
 }
