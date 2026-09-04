@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom'
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import app from '../firebase/config.js';
+import { ToastContainer, toast } from 'react-toastify';
+
 const auth = getAuth(app);
 
 const signup = () => {
@@ -22,7 +24,8 @@ const signup = () => {
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log(errorMessage);
+                toast(errorCode);
+
                 
             });
     }
@@ -220,7 +223,9 @@ const signup = () => {
                     Already have an account?
                 </Link>
             </div>
+            <ToastContainer />
         </div>
+
     )
 }
 
