@@ -1,45 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fb||login</title>
-    <link rel="stylesheet" href="login/login.css">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
-
-<body>
-    <div class="container">
-        <div class="box-1">
-            <div class="logo">
-                <img src="	https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg" alt="facebook">
-            </div>
-            <div class="content">Facebook helps you connect and share with the people in your life.</div>
-        </div>
-        <div class="box-2">
-            <div class="log-form">
-            <form onsubmit="submitHandler(event)">
-
-                
-            <input type="text"   placeholder="Email address or phone number"  id="ph"/>
-            <input type="password"  placeholder="Password" id="password" />
-                <button class="log-in">
-                  Log in
-                </button>
-            </form>
-            <p>
-                Forgotten password?
-            </p>
-            <hr/>
-            <button class="create-acc"><a href="../signup/new acc.html" >Create new account</a></button>
-            </div>
-        </div>
-    </div>
-    <script src="login/login.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</body>
-
+    <title>react-facebook</title>
+  </head>
+  <body class="bg-[#f2f4f7]">
+    <div id="root" ></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

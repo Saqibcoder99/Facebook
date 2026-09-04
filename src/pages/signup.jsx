@@ -1,34 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
+import React, { useState } from 'react'
+import { Link,useNavigate } from 'react-router-dom'
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import app from '../firebase/config.js';
+const auth = getAuth(app);
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup for Fb</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="new acc.css">
-</head>
+const signup = () => {
 
-<body>
-    <div class="container">
-        <div class="logo"> <img src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg" alt="facebook"></div>
-        <div class="box">
-            <div class="b-content">
-                <h2>Create a new account</h2>
-                <h4>It's quick and easy.</h4>
-                <hr />
-            </div>
-            <form onsubmit="submitHandler(event)">
-                <div class="name-section">
-                    <input type="text" placeholder="First name" id="f-name">
-                    <input type="text" placeholder="Surname" id="l-name">
+    const [Email, setEmail] = useState("")
+    const [Password, setPassword] = useState("")
+    const navigate=useNavigate(null)
+    const signupHandler = () => {
+        createUserWithEmailAndPassword(auth, Email, Password)
+            .then((userCredential) => {
+                // Signed up 
+                const user = userCredential.user;
+                console.log(user);
+                    if(user){
+                navigate("/")
+                }    
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorMessage);
+                
+            });
+    }
+    return (
+        <div className="flex justify-center items-center flex-col h-full w-full">
+            <div className="logo"> <img src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg" alt="facebook" className='h-[100px] w-[300px]' /></div>
+            <div className="w-[450px] bg-white shadow-md rounded-[8px] p-4">
+
+                <div className="b-content">
+                    <h2 className='text-center mb-1 text-2xl font-semibold'>Create a new account</h2>
+                    <h4 className='text-center mb-3 text-[#606770] font-bold'>It's quick and easy.</h4>
+                    <hr />
                 </div>
-                <div class="DOB-section">
-                    <p>Date of birth<span><i class="fa-solid fa-question"></i></span></p>
-                    <div class="DOB-box">
-                        <select name="day" id="S-1">
+                <div className="mt-3.5 h-[39px] flex gap-2.5">
+                    <input type="text" placeholder="First name" id="f-name" className='h-full w-1/2 rounded-[5px] border border-[gray] text-[#606770] text-[14px] pl-2.5' />
+                    <input type="text" placeholder="Surname" id="l-name" className='h-full w-1/2 rounded-[5px] border border-[gray] text-[#606770] text-[14px] pl-2.5' />
+                </div>
+                <div className="DOB-section">
+                    <p className='text-[12px] text-[#606770] mt-4 mb-2.5'>Date of birth<span className='bg-[#52575e] text-[aliceblue] rounded-[50%] ml-1 text-[9px] mb-2.5'><i class="fa-solid fa-question"></i></span></p>
+                    <div className="h-[36px] w-full flex gap-4">
+                        <select name="day" id="S-1" className='h-full w-10/12 text-[16px] pl-1 rounded-[5px] mb-[4px] border border-gray-500'>
                             <option>day</option>
                             <option value="01">01</option>
                             <option value="02">02</option>
@@ -62,7 +77,7 @@
                             <option value="30">30</option>
                             <option value="31">31</option>
                         </select>
-                        <select id="S-2" name="month">
+                        <select name="month" id="S-2" className='h-full w-10/12 text-[16px] pl-1 rounded-[5px] mb-[4px] border border-gray-500'>
                             <option>month</option>
                             <option value="January">January</option>
                             <option value="February">February</option>
@@ -77,7 +92,7 @@
                             <option value="November">November</option>
                             <option value="December">December</option>
                         </select>
-                        <select name="year" id="S-3">
+                        <select name="year" id="S-3" className='h-full w-10/12 text-[16px] pl-1 rounded-[5px] mb-[4px] border border-gray-500'>
                             <option>year</option>
                             <option value="2025">2025</option>
                             <option value="2024">2024</option>
@@ -169,47 +184,44 @@
 
                     </div>
                 </div>
-                <div class="DOB-section">
-                    <p>Gender<span><i class="fa-solid fa-question"></i></span></p>
-                    <div class="gender-box">
-                        <div class="female">
+                <div className="DOB-section">
+                    <p className='text-[12px] text-[#606770] mt-4 mb-2.5'>Gender<span className='bg-[#52575e] text-[aliceblue] rounded-[50%] ml-1 text-[9px] mb-2.5'><i class="fa-solid fa-question"></i></span></p>
+                    <div className="h-[36px] flex gap-3.5 justify-between">
+                        <div class=" border border-gray-500 w-[30%] flex items-center rounded-[5px] pl-2">
                             Female
-                            <input type="radio" value="female" name="gender">
+                            <input className='ml-[35%]' type="radio" value="female" name="gender" />
                         </div>
-                        <div class="male">
+                        <div className=" border border-gray-500 w-[30%] flex items-center rounded-[5px] pl-2">
                             Male
-                            <input type="radio"  value="male" name="gender">
+                            <input className='ml-[35%]' type="radio" value="male" name="gender" />
                         </div>
-                        <div class="others">
+                        <div className=" border border-gray-500 w-[30%] flex items-center rounded-[5px] pl-2">
                             other
-                            <input type="radio"  value="others" name="gender">
+                            <input className='ml-[35%]' type="radio" value="others" name="gender" />
                         </div>
                     </div>
                 </div>
-                <div class="address">
-                    <input type="text" placeholder="Mobile number or email address" id="address">
+                <div className="w-full h-[42px] mt-2.5">
+                    <input onChange={(e) => setEmail(e.target.value)} className='h-full w-full pl-3.5 text-[15px] rounded-[5px] border border-gray-500' type="text" placeholder="Mobile number or email address" id="address" />
                 </div>
-                <div class="password">
-                    <input type="text" placeholder="New password" id="new password">
+                <div className="w-full h-[42px] mt-2.5">
+                    <input onChange={(e) => setPassword(e.target.value)} className='h-full w-full pl-3.5 text-[15px] rounded-[5px] border border-gray-500' type="text" placeholder="New password" id="new password" />
                 </div>
-                <div class="last-content">
-                    <p>People who use our service may have uploaded your contact information to Facebook.<a> Learn
-                            more.</a></p>
-                    <p>By clicking Sign Up, you agree to our <a>Terms, Privacy Policy</a> and <a>Cookies Policy.</a> You
+                <div className="mt-3 text-[11px] text-[#777777]">
+                    <p className='mt-3.5'>People who use our service may have uploaded your contact information to Facebook.<a className='text-[#385898] cursor-pointer hover:underline'> Learn
+                        more.</a></p>
+                    <p className='mt-3.5'>By clicking Sign Up, you agree to our <a className='text-[#385898] cursor-pointer hover:underline'>Terms, Privacy Policy</a> and <a className='text-[#385898] cursor-pointer  hover:underline '>Cookies Policy.</a> You
                         may receive SMS
                         notifications from us and can opt out at any time.</p>
                 </div>
 
-                <button class="signup">Sign Up</button>
-            </form>
-            <div class="already-acc">
-              <a href="../index.html">  Already have an account?</a>
+                <button className="w-[48%] h-[41px] mb-4 mt-6 rounded-[6px] text-[19px] bg-[#3da528] border-none text-white cursor-pointer font-semibold ml-[25%] hover:text-[#f2f4f7]" onClick={signupHandler}>Sign Up</button>
+                <Link to={"/login"} className="text-center flex justify-center font-medium text-[17px] mt-[4px] text-[#1877f2] cursor-pointer mb-1 ">
+                    Already have an account?
+                </Link>
             </div>
-
         </div>
-    </div>
-    <script src="new acc.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</body>
+    )
+}
 
-</html>
+export default signup

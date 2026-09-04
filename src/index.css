@@ -1,14 +1,5 @@
- * {
-     margin: 0;
-     padding: 0;
-     border: border-box;
-     font-family: Arial, Helvetica, sans-serif;
- }
+@import "tailwindcss";
 
- body {
-     height: 100%;
-     width: 100%;
- }
 
  /*header*/
  header {
@@ -86,17 +77,19 @@
  }
 
  #notification {
-     height: 30px;
+     height: 40px;
      width: 43px;
+     align-content: center;
      background-color: #e2e5e9;
-     padding-top: 11px;
      border-radius: 60%;
      cursor: pointer;
  }
 
  .profile {
-     border-radius: 60%;
+     border-radius: 50%;
      cursor: pointer;
+     height: 36px;
+     width: 36px;
  }
 
  /*layout*/
@@ -104,17 +97,19 @@
      display: flex;
      font-size: 15px;
      background-color: #f2f4f7;
+     width: 100%;
  }
 
  /* c-1, c-3*/
  .c-1,
  .c-3 {
-     width: 385px;
+     width: 25%;
      height: 700px;
      background-color: #f2f4f7;
      padding-top: 65px;
      padding-left: 18px;
      overflow-y: auto;
+     font-weight: 600;
  }
 
  .c-3::-webkit-scrollbar {
@@ -169,6 +164,8 @@
      color: #6b6f73;
      margin: 10px 0px;
      margin-left: 5px;
+     font-size: 18px;
+     font-weight: 700;
  }
 
  .c-1-item:hover {
@@ -188,7 +185,8 @@
 
  .postupload-box {
      display: flex;
-     height: 45px;
+     align-items: center;
+     height: 60px;
      width: 660px;
      background-color: white;
      border-radius: 15px;
@@ -198,7 +196,7 @@
 
  .post-box {
      width: 472px;
-     height: 25px;
+     height: 100%;
      display: flex;
      align-items: center;
      background-color: #f2f4f7;
@@ -209,7 +207,6 @@
  }
 
  .icons {
-     margin-top: 10px;
      font-size: 20px;
      margin-left: 20px;
      cursor: pointer;
@@ -274,14 +271,15 @@
  }
 
  .story {
-     height: 180px;
-     width: 120px;
+     height: 200px;
+     width: 130px;
      min-width: 110px;
      margin-top: 15px;
      border-radius: 8px;
      padding: 10px;
      background-size: cover;
      overflow: hidden;
+     background-image: url("https://picsum.photos/400/700?random=15");
      background-position: center;
  }
 
@@ -306,7 +304,7 @@
      color: #fff;
      font-size: 14px;
      background: linear-gradient(to top, #000, #00000000);
-     width: 100%;
+     width:130px;
  }
 
  .show {
