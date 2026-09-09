@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { Link,useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import app from '../firebase/config.js';
+import app, { db } from '../firebase/config.js';
 import { ToastContainer, toast } from 'react-toastify';
+import { getFirestore, doc, setDoc } from "firebase/firestore";
 
 const auth = getAuth(app);
 
@@ -10,25 +11,54 @@ const signup = () => {
 
     const [Email, setEmail] = useState("")
     const [Password, setPassword] = useState("")
-    const navigate=useNavigate(null)
-    const signupHandler = () => {
-        createUserWithEmailAndPassword(auth, Email, Password)
-            .then((userCredential) => {
-                // Signed up 
-                const user = userCredential.user;
-                console.log(user);
-                    if(user){
-                navigate("/")
-                }    
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                toast(errorCode);
+    const [firstName, setfirstName] = useState("")
+    const [lastName, setlastName] = useState("")
 
-                
-            });
+    const navigate = useNavigate(null)
+    const signupHandler = async () => {
+        try {
+            let { user } = await createUserWithEmailAndPassword(auth, Email, Password)
+            if (user) {
+                             navigate("/") 
+                try {
+                    const docRef =await setDoc(doc(db, "users", user.uid), {
+                        firstName:firstName,
+                        lastName:lastName,
+                        Email:Email,
+                        Password:Password,
+                    });
+                    console.log("Document written with ID: ", docRef.id);
+                } catch (e) {
+                    console.error("Error adding document: ", e);
+                }
+            }
+
+            console.log("users created!");
+
+        } catch (error) {
+            const { code, message } = error
+            toast(code);
+
+        }
+
+        // createUserWithEmailAndPassword(auth, Email, Password)
+        //     .then((userCredential) => {
+        //         // Signed up 
+        //         const user = userCredential.user;
+        //         console.log(user);
+        //             if(user){
+        //         navigate("/")
+        //         }    
+        //     })
+        //     .catch((error) => {
+        //         const errorCode = error.code;
+        //         const errorMessage = error.message;
+        //         toast(errorCode);
+
+
+        //     });
     }
+    
     return (
         <div className="flex justify-center items-center flex-col h-full w-full">
             <div className="logo"> <img src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg" alt="facebook" className='h-[100px] w-[300px]' /></div>
@@ -40,8 +70,8 @@ const signup = () => {
                     <hr />
                 </div>
                 <div className="mt-3.5 h-[39px] flex gap-2.5">
-                    <input type="text" placeholder="First name" id="f-name" className='h-full w-1/2 rounded-[5px] border border-[gray] text-[#606770] text-[14px] pl-2.5' />
-                    <input type="text" placeholder="Surname" id="l-name" className='h-full w-1/2 rounded-[5px] border border-[gray] text-[#606770] text-[14px] pl-2.5' />
+                    <input value={firstName} onChange={(e) => setfirstName(e.target.value)} type="text" placeholder="First name" id="f-name" className='h-full w-1/2 rounded-[5px] border border-[gray] text-[#606770] text-[14px] pl-2.5' />
+                    <input value={lastName} onChange={(e) => setlastName(e.target.value)} type="text" placeholder="Surname" id="l-name" className='h-full w-1/2 rounded-[5px] border border-[gray] text-[#606770] text-[14px] pl-2.5' />
                 </div>
                 <div className="DOB-section">
                     <p className='text-[12px] text-[#606770] mt-4 mb-2.5'>Date of birth<span className='bg-[#52575e] text-[aliceblue] rounded-[50%] ml-1 text-[9px] mb-2.5'><i class="fa-solid fa-question"></i></span></p>
@@ -205,10 +235,10 @@ const signup = () => {
                     </div>
                 </div>
                 <div className="w-full h-[42px] mt-2.5">
-                    <input onChange={(e) => setEmail(e.target.value)} className='h-full w-full pl-3.5 text-[15px] rounded-[5px] border border-gray-500' type="text" placeholder="Mobile number or email address" id="address" />
+                    <input value={Email} onChange={(e) => setEmail(e.target.value)} className='h-full w-full pl-3.5 text-[15px] rounded-[5px] border border-gray-500' type="text" placeholder="Mobile number or email address" id="address" />
                 </div>
                 <div className="w-full h-[42px] mt-2.5">
-                    <input onChange={(e) => setPassword(e.target.value)} className='h-full w-full pl-3.5 text-[15px] rounded-[5px] border border-gray-500' type="text" placeholder="New password" id="new password" />
+                    <input value={Password} onChange={(e) => setPassword(e.target.value)} className='h-full w-full pl-3.5 text-[15px] rounded-[5px] border border-gray-500' type="text" placeholder="New password" id="new password" />
                 </div>
                 <div className="mt-3 text-[11px] text-[#777777]">
                     <p className='mt-3.5'>People who use our service may have uploaded your contact information to Facebook.<a className='text-[#385898] cursor-pointer hover:underline'> Learn

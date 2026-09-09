@@ -1,35 +1,53 @@
 import React, { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Navigate } from "react-router-dom";
-
+import { getFirestore, doc, getDoc } from "firebase/firestore";
+import app from "../firebase/config";
+import { useUser } from "./UserContext";
 const auth = getAuth();
+const db = getFirestore(app);
 
 const ProtectedRoute = ({children}) => {
-
+  const { setUserData } = useUser();
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true)
-
+    
   const getUser = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/auth.user
+        setUserData(null);
         const uid = user.uid;
-
-        console.log("user", user);
+         fetchUserData(uid);
+        
         setUser(user)
-
-        // ...
       } else {
 
         setUser(null)
-        // User is signed out
-        // ...
       }
 
       setLoading(false)
     });
   };
+
+  
+  async function fetchUserData(uid) {
+    
+  try {
+    const userDocRef = doc(db, "users", uid);    
+    const userDocSnap = await getDoc(userDocRef);
+  
+    if (userDocSnap.exists()) {
+      const userData = userDocSnap.data();
+      console.log(userData);
+      setUserData(userData);
+      
+    } else {
+      console.log("No such user document found in Firestore!");
+    }
+  } catch (error) {
+    console.error("Error fetching user data:", error);
+  }
+}
 
   useEffect(() => {
     getUser();
