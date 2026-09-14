@@ -2,43 +2,59 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import app, { db } from '../firebase/config.js';
-import { ToastContainer, toast } from 'react-toastify';
+import Swal from 'sweetalert2';
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 
 const auth = getAuth(app);
 
 const signup = () => {
-
-    const [Email, setEmail] = useState("")
-    const [Password, setPassword] = useState("")
-    const [firstName, setfirstName] = useState("")
-    const [lastName, setlastName] = useState("")
-
+    const [form,setForm]=useState({
+        Email:"",
+        Password:"",
+        firstName:"",
+        lastName:"",
+    })
+    // const [Email, setEmail] = useState("")
+    // const [Password, setPassword] = useState("")
+    // const [firstName, setfirstName] = useState("")
+    // const [lastName, setlastName] = useState("")
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate(null)
+    function sweetAlert2(message) {
+        Swal.fire({
+            icon: `error`,
+            title: "Oops...",
+            text: "Something went wrong!",
+            footer: `<a href="#">${message}!</a>`
+        });
+    }
+
     const signupHandler = async () => {
         try {
-            let { user } = await createUserWithEmailAndPassword(auth, Email, Password)
+            setLoading(true)
+            let { user } = await createUserWithEmailAndPassword(auth, form.Email, form.Password)
+            
             if (user) {
-                             navigate("/") 
                 try {
-                    const docRef =await setDoc(doc(db, "users", user.uid), {
-                        firstName:firstName,
-                        lastName:lastName,
-                        Email:Email,
-                        Password:Password,
+                    const docRef = await setDoc(doc(db, "users", user.uid), {
+                        firstName: form.firstName,
+                        lastName: form.lastName,
+                        Email: form.Email,
+                        Password: form.Password,
                     });
-                    console.log("Document written with ID: ", docRef.id);
-                } catch (e) {
-                    console.error("Error adding document: ", e);
+                    console.log("Document written with ID: ", user.uid);
+                } catch (error) {
+                    console.error("Error adding document: ", error.message);
                 }
             }
+            navigate("/")
+            setLoading(false)
 
             console.log("users created!");
 
         } catch (error) {
             const { code, message } = error
-            toast(code);
-
+            sweetAlert2(message)
         }
 
         // createUserWithEmailAndPassword(auth, Email, Password)
@@ -58,7 +74,7 @@ const signup = () => {
 
         //     });
     }
-    
+
     return (
         <div className="flex justify-center items-center flex-col h-full w-full">
             <div className="logo"> <img src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg" alt="facebook" className='h-[100px] w-[300px]' /></div>
@@ -70,8 +86,8 @@ const signup = () => {
                     <hr />
                 </div>
                 <div className="mt-3.5 h-[39px] flex gap-2.5">
-                    <input value={firstName} onChange={(e) => setfirstName(e.target.value)} type="text" placeholder="First name" id="f-name" className='h-full w-1/2 rounded-[5px] border border-[gray] text-[#606770] text-[14px] pl-2.5' />
-                    <input value={lastName} onChange={(e) => setlastName(e.target.value)} type="text" placeholder="Surname" id="l-name" className='h-full w-1/2 rounded-[5px] border border-[gray] text-[#606770] text-[14px] pl-2.5' />
+                    <input value={form.firstName} onChange={(e) => setForm((prev)=>({...prev,"firstName":e.target.value}))} type="text" placeholder="First name" id="f-name" className='h-full w-1/2 rounded-[5px] border border-[gray] text-[#606770] text-[14px] pl-2.5' required />
+                    <input value={form.lastName} onChange={(e) =>  setForm((prev)=>({...prev,"lastName":e.target.value}))} type="text" placeholder="Surname" id="l-name" className='h-full w-1/2 rounded-[5px] border border-[gray] text-[#606770] text-[14px] pl-2.5' required/>
                 </div>
                 <div className="DOB-section">
                     <p className='text-[12px] text-[#606770] mt-4 mb-2.5'>Date of birth<span className='bg-[#52575e] text-[aliceblue] rounded-[50%] ml-1 text-[9px] mb-2.5'><i class="fa-solid fa-question"></i></span></p>
@@ -235,10 +251,10 @@ const signup = () => {
                     </div>
                 </div>
                 <div className="w-full h-[42px] mt-2.5">
-                    <input value={Email} onChange={(e) => setEmail(e.target.value)} className='h-full w-full pl-3.5 text-[15px] rounded-[5px] border border-gray-500' type="text" placeholder="Mobile number or email address" id="address" />
+                    <input value={form.Email} onChange={(e) =>  setForm((prev)=>({...prev,"Email":e.target.value}))} className='h-full w-full pl-3.5 text-[15px] rounded-[5px] border border-gray-500' type="text" placeholder="Mobile number or email address" id="address" />
                 </div>
                 <div className="w-full h-[42px] mt-2.5">
-                    <input value={Password} onChange={(e) => setPassword(e.target.value)} className='h-full w-full pl-3.5 text-[15px] rounded-[5px] border border-gray-500' type="text" placeholder="New password" id="new password" />
+                    <input value={form.Password} onChange={(e) =>  setForm((prev)=>({...prev,"Password":e.target.value}))} className='h-full w-full pl-3.5 text-[15px] rounded-[5px] border border-gray-500' type="text" placeholder="New password" id="new password" />
                 </div>
                 <div className="mt-3 text-[11px] text-[#777777]">
                     <p className='mt-3.5'>People who use our service may have uploaded your contact information to Facebook.<a className='text-[#385898] cursor-pointer hover:underline'> Learn
@@ -248,12 +264,12 @@ const signup = () => {
                         notifications from us and can opt out at any time.</p>
                 </div>
 
-                <button className="w-[48%] h-[41px] mb-4 mt-6 rounded-[6px] text-[19px] bg-[#3da528] border-none text-white cursor-pointer font-semibold ml-[25%] hover:text-[#f2f4f7]" onClick={signupHandler}>Sign Up</button>
+                <button className="w-[50%] h-[41px] mb-4 mt-6 rounded-[6px] text-[18px] bg-[#3da528] border-none text-white cursor-pointer font-semibold ml-[25%] hover:text-[#f2f4f7]" onClick={signupHandler}>    {loading ? "Creating account..." : "Sign Up"}
+                </button>
                 <Link to={"/login"} className="text-center flex justify-center font-medium text-[17px] mt-[4px] text-[#1877f2] cursor-pointer mb-1 ">
                     Already have an account?
                 </Link>
             </div>
-            <ToastContainer />
         </div>
 
     )

@@ -80,140 +80,164 @@ const home = () => {
             storyFile: "https://picsum.photos/400/700?random=15",
         }
     ];
-    const postData = [
-        {
-            profilePhoto: "https://randomuser.me/api/portraits/women/45.jpg",
-            userName: "Areeba Khan",
-            time: "2 days ago at 21:10",
-            content: "Khamoshi…",
-            hiddenContent: "<br /> . <br /> . <br />",
-            postImg: "https://picsum.photos/400/700?random=16",
-            reactions: 32,
-            comments: 16,
-            shares: 12
-        },
-        {
-            profilePhoto: "https://randomuser.me/api/portraits/men/32.jpg",
-            userName: "Hamza Ali",
-            time: "today at 09:05",
-            content: "Samajhne wala koi nahi…",
-            hiddenContent: "<br />Kabhi kabhi lagta hai<br />sab keh kar bhi kuch nahi kaha<br />",
-            postImg: "https://picsum.photos/400/700?random=17",
-            reactions: 22,
-            comments: 12,
-            shares: 8
-        },
-        {
-            profilePhoto: "https://randomuser.me/api/portraits/women/68.jpg",
-            userName: "Sara Malik",
-            time: "yesterday at 18:42",
-            content: "Dil bojhal sa hai…",
-            hiddenContent: "<br /> . <br /> . <br />",
-            postImg: "https://picsum.photos/400/700?random=18",
-            reactions: 12,
-            comments: 14,
-            shares: 5
-        },
-        {
-            profilePhoto: "https://randomuser.me/api/portraits/men/54.jpg",
-            userName: "Usman Raza",
-            time: "3 days ago at 23:01",
-            content: "Ajeeb si tanhai hai…",
-            hiddenContent: "<br />Is bheer mein bhi<br />khud ko akela mehsoos karta hoon<br />",
-            postImg: "https://picsum.photos/400/700?random=19",
-            reactions: 42,
-            comments: 26,
-            shares: 18
-        },
-        {
-            profilePhoto: "https://randomuser.me/api/portraits/women/21.jpg",
-            userName: "Noor Fatima",
-            time: "today at 01:18",
-            content: "Khud se hi baatein…",
-            hiddenContent: "<br /> . <br /> . <br />",
-            postImg: "https://picsum.photos/400/700?random=20",
-            reactions: 9,
-            comments: 16,
-            shares: 12
-        },
-        {
-            profilePhoto: "https://randomuser.me/api/portraits/men/77.jpg",
-            userName: "Bilal Ahmed",
-            time: "4 days ago at 16:55",
-            content: "Sab theek hai… kehne ko.",
-            hiddenContent: "<br />Par andar se<br />sab bikhar chuka hai<br />",
-            postImg: "https://picsum.photos/400/700?random=21",
-            reactions: 62,
-            comments: 46,
-            shares: 26
-        },
-        {
-            profilePhoto: "https://randomuser.me/api/portraits/women/39.jpg",
-            userName: "Hira Shah",
-            time: "yesterday at 11:09",
-            content: "Andar kuch toot sa gaya hai…",
-            hiddenContent: "<br /> . <br /> . <br />",
-            postImg: "https://picsum.photos/400/700?random=22",
-            reactions: 82,
-            comments: 66,
-            shares: 52
-        },
-        {
-            profilePhoto: "https://randomuser.me/api/portraits/men/19.jpg",
-            userName: "Faizan Noor",
-            time: "2 days ago at 07:30",
-            content: "Neend bhi rooth gayi hai…",
-            hiddenContent: "<br />Raat bhar jaag kar bhi<br />khud ko nahi samajh paaya<br />",
-            postImg: "https://picsum.photos/400/700?random=23",
-            reactions: 98,
-            comments: 76,
-            shares: 85
-        },
-        {
-            profilePhoto: "https://randomuser.me/api/portraits/women/52.jpg",
-            userName: "Maryam Iqbal",
-            time: "today at 13:47",
-            content: "Bas chal raha hai…",
-            hiddenContent: "<br /> . <br /> . <br />",
-            postImg: "https://picsum.photos/400/700?random=24",
-            reactions: 2,
-            comments: 0,
-            shares: 0
-        },
-        {
-            profilePhoto: "https://randomuser.me/api/portraits/men/41.jpg",
-            userName: "Saad Hussain",
-            time: "5 days ago at 20:22",
-            content: "Dil thak sa gaya hai…",
-            hiddenContent: "<br />Roz muskurana bhi<br />ek bojh ban jata hai<br />",
-            postImg: "https://picsum.photos/400/700?random=25",
-            reactions: 52,
-            comments: 46,
-            shares: 32
-        },
-        {
-            profilePhoto: "https://randomuser.me/api/portraits/women/60.jpg",
-            userName: "Anum Sheikh",
-            time: "yesterday at 00:59",
-            content: "Khud ko sambhal rahe hain…",
-            hiddenContent: "<br /> . <br /> . <br />",
-            postImg: "https://picsum.photos/400/700?random=26",
-            reactions: 12,
-            comments: 6,
-            shares: 2
-        },
-        {
-            profilePhoto: "https://randomuser.me/api/portraits/men/88.jpg",
-            userName: "Zeeshan Akram",
-            time: "3 days ago at 10:14",
-            content: "Dil bhi chup hai…",
-            hiddenContent: "<br />Kuch baatein<br />lafzon mein nahi aati<br />",
-            postImg: "https://picsum.photos/400/700?random=27",
-            reactions: 82,
-            comments: 56,
-            shares: 32
-        }
-    ];
+const postData = [
+    {
+        id: 1,
+        profilePhoto: "https://randomuser.me/api/portraits/women/45.jpg",
+        userName: "Areeba Khan",
+        time: "2 days ago at 21:10",
+        content: "Khamoshi…",
+        hiddenContent: "Kabhi kabhi khamoshi hi sabse zyada keh deti hai.",
+        postImg: "https://picsum.photos/400/700?random=16",
+        reactions: 32,
+        comments: 16,
+        shares: 12
+    },
+    {
+        id: 2,
+        profilePhoto: "https://randomuser.me/api/portraits/men/32.jpg",
+        userName: "Hamza Ali",
+        time: "today at 09:05",
+        content: "Samajhne wala koi nahi…",
+        hiddenContent: `Kabhi kabhi lagta hai
+sab keh kar bhi kuch nahi kaha.
+Kuch baatein bas dil mein reh jaati hain.`,
+        postImg: "https://picsum.photos/400/700?random=17",
+        reactions: 22,
+        comments: 12,
+        shares: 8
+    },
+    {
+        id: 3,
+        profilePhoto: "https://randomuser.me/api/portraits/women/68.jpg",
+        userName: "Sara Malik",
+        time: "yesterday at 18:42",
+        content: "Dil bojhal sa hai…",
+        hiddenContent: "Bas thoda sa sukoon chahiye.",
+        postImg: "https://picsum.photos/400/700?random=18",
+        reactions: 12,
+        comments: 14,
+        shares: 5
+    },
+    {
+        id: 4,
+        profilePhoto: "https://randomuser.me/api/portraits/men/54.jpg",
+        userName: "Usman Raza",
+        time: "3 days ago at 23:01",
+        content: "Ajeeb si tanhai hai…",
+        hiddenContent: `Is bheer mein bhi
+khud ko akela mehsoos karta hoon.
+Shayad tanhai logon ke darmiyan bhi hoti hai.`,
+        postImg: "https://picsum.photos/400/700?random=19",
+        reactions: 42,
+        comments: 26,
+        shares: 18
+    },
+    {
+        id: 5,
+        profilePhoto: "https://randomuser.me/api/portraits/women/21.jpg",
+        userName: "Noor Fatima",
+        time: "today at 01:18",
+        content: "Khud se hi baatein…",
+        hiddenContent: "Kabhi kabhi khud ko samajhna bhi mushkil ho jata hai.",
+        postImg: "https://picsum.photos/400/700?random=20",
+        reactions: 9,
+        comments: 16,
+        shares: 12
+    },
+    {
+        id: 6,
+        profilePhoto: "https://randomuser.me/api/portraits/men/77.jpg",
+        userName: "Bilal Ahmed",
+        time: "4 days ago at 16:55",
+        content: "Sab theek hai… kehne ko.",
+        hiddenContent: `Par andar se
+sab bikhar chuka hai.
+Har kisi ko lagta hai sab theek hai.`,
+        postImg: "https://picsum.photos/400/700?random=21",
+        reactions: 62,
+        comments: 46,
+        shares: 26
+    },
+    {
+        id: 7,
+        profilePhoto: "https://randomuser.me/api/portraits/women/39.jpg",
+        userName: "Hira Shah",
+        time: "yesterday at 11:09",
+        content: "Andar kuch toot sa gaya hai…",
+        hiddenContent: "Lekin phir bhi khud ko sambhalna padta hai.",
+        postImg: "https://picsum.photos/400/700?random=22",
+        reactions: 82,
+        comments: 66,
+        shares: 52
+    },
+    {
+        id: 8,
+        profilePhoto: "https://randomuser.me/api/portraits/men/19.jpg",
+        userName: "Faizan Noor",
+        time: "2 days ago at 07:30",
+        content: "Neend bhi rooth gayi hai…",
+        hiddenContent: `Raat bhar jaag kar bhi
+khud ko nahi samajh paaya.
+Kabhi kabhi dimagh ko bhi sukoon chahiye hota hai.`,
+        postImg: "https://picsum.photos/400/700?random=23",
+        reactions: 98,
+        comments: 76,
+        shares: 85
+    },
+    {
+        id: 9,
+        profilePhoto: "https://randomuser.me/api/portraits/women/52.jpg",
+        userName: "Maryam Iqbal",
+        time: "today at 13:47",
+        content: "Bas chal raha hai…",
+        hiddenContent: "Har din ek nayi umeed ke saath guzarta hai.",
+        postImg: "https://picsum.photos/400/700?random=24",
+        reactions: 2,
+        comments: 0,
+        shares: 0
+    },
+    {
+        id: 10,
+        profilePhoto: "https://randomuser.me/api/portraits/men/41.jpg",
+        userName: "Saad Hussain",
+        time: "5 days ago at 20:22",
+        content: "Dil thak sa gaya hai…",
+        hiddenContent: `Roz muskurana bhi
+ek bojh ban jata hai.
+Lekin zindagi phir bhi chalti rehti hai.`,
+        postImg: "https://picsum.photos/400/700?random=25",
+        reactions: 52,
+        comments: 46,
+        shares: 32
+    },
+    {
+        id: 11,
+        profilePhoto: "https://randomuser.me/api/portraits/women/60.jpg",
+        userName: "Anum Sheikh",
+        time: "yesterday at 00:59",
+        content: "Khud ko sambhal rahe hain…",
+        hiddenContent: "Har mushkil waqt ke baad behtari zaroor aati hai.",
+        postImg: "https://picsum.photos/400/700?random=26",
+        reactions: 12,
+        comments: 6,
+        shares: 2
+    },
+    {
+        id: 12,
+        profilePhoto: "https://randomuser.me/api/portraits/men/88.jpg",
+        userName: "Zeeshan Akram",
+        time: "3 days ago at 10:14",
+        content: "Dil bhi chup hai…",
+        hiddenContent: `Kuch baatein
+lafzon mein nahi aati.
+Kuch ehsaas sirf mehsoos kiye ja sakte hain.`,
+        postImg: "https://picsum.photos/400/700?random=27",
+        reactions: 82,
+        comments: 56,
+        shares: 32
+    }
+];
     const users = [
         {
             name: "Meta AI",
@@ -344,7 +368,8 @@ const home = () => {
     ];
     const [logout, setLogout] = useState(false)
     const [postPopup, setPostPopup] = useState(false)
-    const [like, setLike] = useState(false)    
+    const [like, setLike] = useState(false)  
+    const [expand, setexpand] = useState(null)         
     const { userData } = useUser();
 
     return (
@@ -377,7 +402,7 @@ const home = () => {
                     <div className="pf"> <img
                         src="https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1114445501.jpg"
                         alt="" height="36px" width="36px" class="profile" style={{ marginBottom: "0px" }} />
-                        <p style={{ paddingTop: "11px", paddingLeft: "10px" }} > {userData && `${userData.firstName} ${userData.lastName}`}</p>
+                        <p style={{ paddingTop: "11px", paddingLeft: "10px" }} > {userData&& `${userData.firstName} ${userData.lastName}`}</p>
                     </div>
                     {menuItems.map((item) => (<div class="c-1-item"><img
                         src={item.image}
@@ -439,8 +464,8 @@ const home = () => {
                             </div>
                             <div id="content">
                                 <span> {posts.content}</span><span
-                                    class="hidden">{posts.hiddenContent} </span> <span id="expand"
-                                        onclick="expand(this)">See more</span>
+                                    class={expand===posts.id?"show":"hidden"}>{posts.hiddenContent} </span> <span id="expand"
+                                        onClick={()=>setexpand(expand === posts.id ? null : posts.id )}>{expand === posts.id ? "see less" : "see more"}</span>
                             </div>
                             <hr class="line" />
                             <div class="post-img"><img

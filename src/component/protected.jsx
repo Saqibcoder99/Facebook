@@ -13,11 +13,11 @@ const ProtectedRoute = ({children}) => {
     const [loading, setLoading] = useState(true)
     
   const getUser = () => {
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async(user) => {
       if (user) {
         setUserData(null);
         const uid = user.uid;
-         fetchUserData(uid);
+        await fetchUserData(uid);
         
         setUser(user)
       } else {
