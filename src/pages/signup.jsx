@@ -57,33 +57,18 @@ const signup = () => {
             sweetAlert2(message)
         }
 
-        // createUserWithEmailAndPassword(auth, Email, Password)
-        //     .then((userCredential) => {
-        //         // Signed up 
-        //         const user = userCredential.user;
-        //         console.log(user);
-        //             if(user){
-        //         navigate("/")
-        //         }    
-        //     })
-        //     .catch((error) => {
-        //         const errorCode = error.code;
-        //         const errorMessage = error.message;
-        //         toast(errorCode);
 
-
-        //     });
     }
 
     return (
-        <div className="flex justify-center items-center flex-col h-full w-full">
-            <div className="logo"> <img src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg" alt="facebook" className='h-[100px] w-[300px]' /></div>
-            <div className="w-[450px] bg-white shadow-md rounded-[8px] p-4">
+        <div className="flex justify-center items-center flex-col h-full w-full  ">
+            <div > <img src="https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg" alt="facebook" className='h-[70px] w-[400px] md:h-[100px]' /></div>
+            <div className="w-[350px] bg-white shadow-lg rounded-[8px] px-4 py-2 md:w-[450px] md:py-4">
 
                 <div className="b-content">
-                    <h2 className='text-center mb-1 text-2xl font-semibold'>Create a new account</h2>
-                    <h4 className='text-center mb-3 text-[#606770] font-bold'>It's quick and easy.</h4>
-                    <hr />
+                    <h2 className='text-center  text-[18px] font-bold md:text-2xl md:mb-1'>Create a new account</h2>
+                    <h4 className='text-center  text-[#606770] text-[0px] font-bold md:text-[16px] md:mb-3'>It's quick and easy.</h4>
+                    <hr className='w-0 md:w-full' />
                 </div>
                 <div className="mt-3.5 h-[39px] flex gap-2.5">
                     <input value={form.firstName} onChange={(e) => setForm((prev)=>({...prev,"firstName":e.target.value}))} type="text" placeholder="First name" id="f-name" className='h-full w-1/2 rounded-[5px] border border-[gray] text-[#606770] text-[14px] pl-2.5' required />
@@ -236,17 +221,17 @@ const signup = () => {
                 <div className="DOB-section">
                     <p className='text-[12px] text-[#606770] mt-4 mb-2.5'>Gender<span className='bg-[#52575e] text-[aliceblue] rounded-[50%] ml-1 text-[9px] mb-2.5'><i class="fa-solid fa-question"></i></span></p>
                     <div className="h-[36px] flex gap-3.5 justify-between">
-                        <div class=" border border-gray-500 w-[30%] flex items-center rounded-[5px] pl-2">
+                        <div class=" gap-[20%] border border-gray-500 w-[30%] flex items-center rounded-[5px] pl-2 md:gap-[35%]">
                             Female
-                            <input className='ml-[35%]' type="radio" value="female" name="gender" />
+                            <input  type="radio" value="female" name="gender" />
                         </div>
-                        <div className=" border border-gray-500 w-[30%] flex items-center rounded-[5px] pl-2">
+                        <div className=" gap-[35%] border border-gray-500 w-[30%] flex items-center rounded-[5px] pl-2">
                             Male
-                            <input className='ml-[35%]' type="radio" value="male" name="gender" />
+                            <input  type="radio" value="male" name="gender" />
                         </div>
-                        <div className=" border border-gray-500 w-[30%] flex items-center rounded-[5px] pl-2">
+                        <div className=" gap-[35%] border border-gray-500 w-[30%] flex items-center rounded-[5px] pl-2">
                             other
-                            <input className='ml-[35%]' type="radio" value="others" name="gender" />
+                            <input  type="radio" value="others" name="gender" />
                         </div>
                     </div>
                 </div>
@@ -259,14 +244,15 @@ const signup = () => {
                 <div className="mt-3 text-[11px] text-[#777777]">
                     <p className='mt-3.5'>People who use our service may have uploaded your contact information to Facebook.<a className='text-[#385898] cursor-pointer hover:underline'> Learn
                         more.</a></p>
-                    <p className='mt-3.5'>By clicking Sign Up, you agree to our <a className='text-[#385898] cursor-pointer hover:underline'>Terms, Privacy Policy</a> and <a className='text-[#385898] cursor-pointer  hover:underline '>Cookies Policy.</a> You
+                    <p className='mt-1 md:mt-2.5'>By clicking Sign Up, you agree to our <a className='text-[#385898] cursor-pointer hover:underline'>Terms, Privacy Policy</a> and <a className='text-[#385898] cursor-pointer  hover:underline '>Cookies Policy.</a> You
                         may receive SMS
                         notifications from us and can opt out at any time.</p>
                 </div>
-
-                <button className="w-[50%] h-[41px] mb-4 mt-6 rounded-[6px] text-[18px] bg-[#3da528] border-none text-white cursor-pointer font-semibold ml-[25%] hover:text-[#f2f4f7]" onClick={signupHandler}>    {loading ? "Creating account..." : "Sign Up"}
+                <div className='flex justify-center'>
+                <button className="w-[50%] h-[35px]  md:h-[41px] mb-1 mt-3 rounded-[6px] text-[18px] bg-[#3da528] border-none text-white cursor-pointer font-semibold  hover:text-[#f2f4f7] md:mt-6 md:mb-4" onClick={signupHandler}>    {loading ? "Creating account..." : "Sign Up"}
                 </button>
-                <Link to={"/login"} className="text-center flex justify-center font-medium text-[17px] mt-[4px] text-[#1877f2] cursor-pointer mb-1 ">
+                </div>
+                <Link to={"/login"} className=" flex justify-center font-medium text-[14px] mt-[4px] text-[#1877f2] cursor-pointer mb-0 md:mb-1 ">
                     Already have an account?
                 </Link>
             </div>

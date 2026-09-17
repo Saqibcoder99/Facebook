@@ -49,15 +49,12 @@ const login = () => {
             });
     }
     return (
-        <div className="w-full h-[786px] flex flex-wrap justify-center">
-            <div className="box-1">
-                <div className="w-[500px] h-[100px] mt-[35%]">
-                    <img src="	https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg" alt="facebook" className='w-[320px] ml-[-76px] mb-[-10px]' />
-                </div>
-                <div className="ml-[-10%] text-2xl font-medium w-[500px] ">Facebook helps you connect and share with the people in your life.</div>
-            </div>
-            <div className="box-2">
-                <div className="ml-[9%] w-[400px] h-auto bg-white shadow-sm rounded-[8px] p-3.5 mt-[32%] pb-10 ">
+        <div className="w-full h-full flex flex-wrap justify-center items-center  md:gap-[10%]">
+                <div className="w-[500px] h-0 flex flex-col items-center text-center  lg:h-[280px] md:items-start md:text-start">
+                    <img src="	https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg" alt="facebook" className='w-[320px] mb-[-10px] md:ml-[-30px]' />
+                <div className=" text-[18px] px-3.5 font-medium md:text-2xl md:p-0 ">Facebook helps you connect and share with the people in your life.</div>
+               </div>
+                <div className=" w-[320px] h-[370px] mt-25 text-center bg-white shadow-lg rounded-[8px] p-4 md:w-[400px] md:mt-0">
 
 
                     <input value={Email} onChange={(e) => setEmail(e.target.value)} className='w-full  py-3 px-2.5 justify-center rounded-[5px] text-[20px] mb-[11px] border-2 border-[#dddfe2] outline-0 focus:border-[#0866ff] caret-[#0866ff] placeholder:text-[17px] ' type="text" placeholder="Email address or phone number" id="ph" />
@@ -65,13 +62,12 @@ const login = () => {
                     <button className="w-full p-3 mb-3.5 mt-1 rounded-[6px] text-[20px] bg-[#0866ff] border-0 text-white cursor-pointer font-semibold hover:bg-[#2670e6]" onClick={loginHandler}>
                         Log in
                     </button>
-                    <p className='text-center flex justify-center font-medium text-[14px] mt-1 text-[#0866ff] cursor-pointer hover:underline'>
+                    <p className=' font-medium text-[14px] mt-1 text-[#0866ff] cursor-pointer hover:underline'>
                         Forgotten password?
                     </p>
                     <hr className='w-[97%] text-[#dddfe2] my-[30px]' />
-                    <Link to={"/signup"} className="  p-3  mt-6 rounded-[6px] text-[17px] bg-[#42b72a] border-0 text-white cursor-pointer font-semibold ml-[25%] mb-3.5 hover:bg-[#3da528]">Create new account</Link>
+                    <Link to={"/signup"} className="  p-3   rounded-[6px] text-[17px] bg-[#42b72a] border-0 text-white cursor-pointer font-semibold m-auto  hover:bg-[#3da528]">Create new account</Link>
                 </div>
-            </div>
                     <ToastContainer />
         </div>
         

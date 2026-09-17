@@ -2,6 +2,12 @@ import React from 'react'
 import { useState } from 'react';
 const createpost = ({ setPostPopup }) => {
     const [postDisabled, setPostDisabled] = useState(true);
+    const [postForm, setPostForm]=useState({
+        postDescripton:"",
+        postContent:"",
+    })
+    console.log(postForm);
+    
     return (
         <div className="create-post-popup" >
             <form id="create-post-form">
@@ -23,11 +29,12 @@ const createpost = ({ setPostPopup }) => {
                         </div>
                     </div>
                     <textarea name="caption" onInput={(e) => {
+                        setPostForm((prev)=>({...prev,"postDescripton":e.target.value}))
                         setPostDisabled(e.target.value.trim() == "")
                         e.target.style.height = "auto";
                         e.target.style.height = e.target.scrollHeight + "px";
                     }} placeholder="What's on your mind, L?"></textarea>
-                    <div className="post-obj"><input type="text" id="postLink" placeholder="Add to your post" />
+                    <div className="post-obj"><input type="text" id="postLink" placeholder="Add to your post" onChange={(e)=>{setPostForm((prev)=>({...prev,"postContent":e.target.value}))}} />
                         <div class="img">
                             <img src="https://cdn-icons-png.flaticon.com/512/1829/1829586.png" alt="Photo"  height="24px" width="24px"/>
                             <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="Friends"  height="24px" width="24px"/>
