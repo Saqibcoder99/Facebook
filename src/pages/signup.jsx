@@ -14,10 +14,6 @@ const signup = () => {
         firstName:"",
         lastName:"",
     })
-    // const [Email, setEmail] = useState("")
-    // const [Password, setPassword] = useState("")
-    // const [firstName, setfirstName] = useState("")
-    // const [lastName, setlastName] = useState("")
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate(null)
     function sweetAlert2(message) {
@@ -30,6 +26,10 @@ const signup = () => {
     }
 
     const signupHandler = async () => {
+       if(form.firstName==="" ||  form.lastName===""){
+        return sweetAlert2("Please Fill All fields")
+       }
+       
         try {
             setLoading(true)
             let { user } = await createUserWithEmailAndPassword(auth, form.Email, form.Password)
@@ -50,9 +50,9 @@ const signup = () => {
             navigate("/")
             setLoading(false)
 
-            console.log("users created!");
 
         } catch (error) {
+            setLoading(false)
             const { code, message } = error
             sweetAlert2(message)
         }
@@ -70,6 +70,7 @@ const signup = () => {
                     <h4 className='text-center  text-[#606770] text-[0px] font-bold md:text-[16px] md:mb-3'>It's quick and easy.</h4>
                     <hr className='w-0 md:w-full' />
                 </div>
+                
                 <div className="mt-3.5 h-[39px] flex gap-2.5">
                     <input value={form.firstName} onChange={(e) => setForm((prev)=>({...prev,"firstName":e.target.value}))} type="text" placeholder="First name" id="f-name" className='h-full w-1/2 rounded-[5px] border border-[gray] text-[#606770] text-[14px] pl-2.5' required />
                     <input value={form.lastName} onChange={(e) =>  setForm((prev)=>({...prev,"lastName":e.target.value}))} type="text" placeholder="Surname" id="l-name" className='h-full w-1/2 rounded-[5px] border border-[gray] text-[#606770] text-[14px] pl-2.5' required/>

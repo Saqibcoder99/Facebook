@@ -445,7 +445,7 @@ body::-webkit-scrollbar {
     align-items: center;
 }
 
-.create-post-popup>form {
+.create-post-form {
     width: 500px;
     max-width: 90%;
     box-shadow: 0px 0px 10px 4px #0000006b;
@@ -453,7 +453,7 @@ body::-webkit-scrollbar {
     border-radius: 12px;
 }
 
-.create-post-popup>form>.header {
+.create-post-form >.header {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -464,11 +464,11 @@ body::-webkit-scrollbar {
     border-bottom: 1px solid rgb(191, 191, 191);
 }
 
-.create-post-popup>form>.header>p {
+.create-post-form >.header>p {
     text-align: center;
 }
 
-.create-post-popup>form>.header>i {
+.create-post-form >.header>i {
     position: absolute;
     right: 18px;
     display: flex;
@@ -482,12 +482,12 @@ body::-webkit-scrollbar {
     width: 40px;
 }
 
-.create-post-popup>form>.header>i:hover {
+.create-post-form >.header>i:hover {
     cursor: pointer;
     background-color: #d2d5d8;
 }
 
-.create-post-popup>form>.create-post-content {
+.create-post-form >.create-post-content {
     display: flex;
     flex-direction: column;
     padding: 15px;
@@ -537,22 +537,13 @@ textarea {
     border: 2px solid #d0d3d7;
     border-radius: 12px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding: 0 10px;
-}
-
-.post-obj>input {
-    height: 100%;
-    width: 47%;
-    border: none;
-    outline: none;
     font-size: 20px;
+    font-weight: 600;
 }
 
-.post-obj>input::placeholder {
-    color: black;
-}
 
 .post-obj>.img {
     display: flex;
@@ -694,6 +685,13 @@ textarea {
     .user-reaction i {
         margin: 0px 5px 0px 10%;
     }
+    .post-obj{
+        font-size: 15px;
+    }
+    .post-obj>.img>img{
+        height: 20px;
+        width: 20px;
+    }
 }
 
 @media only screen and (max-width:380px) {
@@ -737,6 +735,9 @@ textarea {
     .user-reaction i {
         margin: 0px 5px 0px 7%;
     }
+    .post-obj{
+        font-size: 13px;
+    }
 
 }
 
@@ -762,5 +763,12 @@ textarea {
 
     #content span {
         font-size: 12px;
+    }
+        .post-obj{
+        font-size: 10px;
+    }
+    .post-obj>.img>img{
+        height:14px;
+        width: 14px;
     }
 }

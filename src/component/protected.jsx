@@ -6,6 +6,7 @@ import app from "../firebase/config";
 import { useUser } from "./UserContext";
 const auth = getAuth();
 const db = getFirestore(app);
+export let userId = null
 
 const ProtectedRoute = ({children}) => {
   const { setUserData } = useUser();
@@ -17,6 +18,7 @@ const ProtectedRoute = ({children}) => {
       if (user) {
         setUserData(null);
         const uid = user.uid;
+        userId=user.uid
         await fetchUserData(uid);
         
         setUser(user)
@@ -38,7 +40,6 @@ const ProtectedRoute = ({children}) => {
   
     if (userDocSnap.exists()) {
       const userData = userDocSnap.data();
-      console.log(userData);
       setUserData(userData);
       
     } else {
@@ -57,11 +58,13 @@ const ProtectedRoute = ({children}) => {
 
 
   if(loading){
-    return <h1 className="flex items-center justify-center h-screen w-screen text-2xl">Loading...</h1>
-  }
+    return(
+            <div className="flex justify-center items-center h-full">
+                <div className="w-10 h-10 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+            </div>)
+              }
 
   if(user){
-console.log("janai user milgaya.. ", user);
 
 return children
     // return <Navigate to="/" />
